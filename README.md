@@ -8,6 +8,9 @@
 
 ## Русский
 
+### 📺 Демонстрация
+[![Смотреть видео](https://img.shields.io/badge/YouTube-Смотреть%20обзор-red?style=for-the-badge&logo=youtube)](https://www.youtube.com/watch?v=EXaBr2wlKmM)
+
 ### Требования
 
 | Компонент | Версия |
@@ -108,6 +111,9 @@ Discord: https://discord.gg/SdjmNnp56N
 
 ## English
 
+### 📺 Video Preview
+[![Watch Video](https://img.shields.io/badge/YouTube-Watch%20Preview-red?style=for-the-badge&logo=youtube)](https://www.youtube.com/watch?v=EXaBr2wlKmM)
+
 ### Requirements
 
 | Component | Version |
@@ -201,7 +207,8 @@ Language is set from config or via URL prefix: `/ru/skins`, `/en/skins`
 
 
 ### Link:
-Donate: https://untakebtw.github.io/
+
+Donate: https://untakebtw.github.io
 Discord: https://discord.gg/SdjmNnp56N
 ---
 
