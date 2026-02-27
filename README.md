@@ -99,6 +99,9 @@ php/
 
 Язык выбирается автоматически из конфига или через URL-префикс: `/ru/skins`, `/en/skins`
 
+### Link:
+Donate: https://untakebtw.github.io/
+Discord: https://discord.gg/SdjmNnp56N
 
 
 ---
@@ -196,6 +199,10 @@ php/
 
 Language is set from config or via URL prefix: `/ru/skins`, `/en/skins`
 
+
+### Link:
+Donate: https://untakebtw.github.io/
+Discord: https://discord.gg/SdjmNnp56N
 ---
 
 ## License
