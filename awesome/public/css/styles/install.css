@@ -1,0 +1,320 @@
+/* Dual-Theme CSS (Ultra Contrast Fix)
+  - Исправлена читаемость текста
+  - Улучшен контраст инпутов
+*/
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+:root {
+    --font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    --card-border-radius: 28px;
+    --button-border-radius: 14px;
+    --backdrop-blur: 25px;
+    --transition-smooth: all 0.3s ease;
+    
+    /* Dark Theme - ВЫСОКИЙ КОНТРАСТ */
+    --bg-image: radial-gradient(circle at 50% 50%, #1e2024, #0f1012);
+    --text-color: #ffffff;
+    --text-color-muted: #bcbcbc; /* Сделал светлее (был слишком темный) */
+    --card-bg-color: rgba(30, 31, 35, 0.9); /* Меньше прозрачности для четкости */
+    --border-color: rgba(255, 255, 255, 0.12);
+    --accent-color: #0A84FF;
+    --success-color: #30D158;
+    --danger-color: #FF453A;
+    --input-bg-color: #26282c; /* Инпуты теперь темные, но непрозрачные */
+    --step-dot-bg: rgba(255, 255, 255, 0.1);
+    --step-dot-color: #ffffff;
+    --step-line-bg: rgba(255, 255, 255, 0.15);
+    --shadow-color: rgba(0, 0, 0, 0.8);
+}
+
+.light-theme {
+    --bg-image: radial-gradient(circle at 50% 50%, #ffffff, #f2f2f7);
+    --text-color: #1c1c1e;
+    --text-color-muted: #555558;
+    --card-bg-color: rgba(255, 255, 255, 0.95);
+    --border-color: rgba(0, 0, 0, 0.1);
+    --accent-color: #007AFF;
+    --success-color: #34C759;
+    --danger-color: #dc3545;
+    --input-bg-color: #f2f2f7;
+    --step-dot-bg: #e5e5ea;
+    --step-dot-color: #1c1c1e;
+}
+
+body.install-body {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    padding: 20px;
+    font-family: var(--font-family);
+    background: var(--bg-image);
+    color: var(--text-color);
+    transition: var(--transition-smooth);
+}
+
+.install-container {
+    background: var(--card-bg-color);
+    backdrop-filter: blur(var(--backdrop-blur));
+    border: 1px solid var(--border-color);
+    border-radius: var(--card-border-radius);
+    padding: 2.5rem 3.5rem;
+    max-width: 680px;
+    width: 100%;
+    box-shadow: 0 40px 80px var(--shadow-color);
+    animation: container-appear 0.5s ease-out;
+}
+
+@keyframes container-appear {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Шаги */
+.step-indicator {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 3rem;
+    position: relative;
+}
+
+.step-indicator::before {
+    content: '';
+    position: absolute;
+    top: 50%; left: 0; right: 0;
+    height: 2px;
+    background: var(--step-line-bg);
+    z-index: 0;
+    transform: translateY(-50%);
+}
+
+.step-dot {
+    width: 2.8rem;
+    height: 2.8rem;
+    border-radius: 50%;
+    background: var(--step-dot-bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--step-dot-color);
+    font-weight: 700;
+    position: relative;
+    z-index: 1;
+    border: 2px solid var(--border-color);
+}
+
+.step-dot.active {
+    background: var(--accent-color);
+    color: #fff;
+    border-color: var(--accent-color);
+    box-shadow: 0 0 15px var(--accent-color);
+}
+
+.step-dot.completed {
+    background: var(--success-color);
+    color: #fff;
+    border-color: var(--success-color);
+}
+
+/* Тексты */
+.install-title {
+    color: var(--text-color);
+    text-align: center;
+    margin-bottom: 1rem;
+    font-weight: 700;
+    font-size: 2rem;
+}
+
+.install-desc {
+    color: var(--text-color-muted);
+    text-align: center;
+    margin-bottom: 2.5rem;
+    font-size: 1rem;
+}
+
+/* Поля ввода (Инпуты) */
+.install-container .form-label {
+    display: block;
+    color: var(--text-color); /* Сделал заголовки инпутов ярко-белыми */
+    font-weight: 600;
+    margin-bottom: 0.8rem;
+    font-size: 0.95rem;
+}
+
+.install-container .form-control,
+.install-container .form-select {
+    background: var(--input-bg-color) !important;
+    border: 1px solid var(--border-color) !important;
+    color: #ffffff !important; /* Текст внутри инпута всегда белый */
+    border-radius: var(--button-border-radius);
+    padding: 1rem 1.2rem;
+    font-size: 1rem;
+    width: 100%;
+    box-sizing: border-box;
+    transition: var(--transition-smooth);
+}
+
+/* Фикс текста в плейсхолдерах */
+.install-container .form-control::placeholder {
+    color: #666 !important;
+}
+
+.install-container .form-control:focus {
+    border-color: var(--accent-color) !important;
+    background: #2d3035 !important;
+    outline: none;
+    box-shadow: 0 0 0 4px rgba(10, 132, 255, 0.2);
+}
+
+/* Подсказки под инпутами */
+.install-container .text-muted,
+.install-container small {
+    color: var(--text-color-muted) !important;
+    font-size: 0.85rem;
+    display: block;
+    margin-top: 0.35rem;
+    padding-left: 4px;
+}
+
+/* Сетка языков */
+.language-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1rem;
+    margin: 2rem 0;
+    width: 100%;
+}
+
+.language-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1.25rem 1rem;
+    min-height: 80px;
+    background: var(--input-bg-color);
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    color: var(--text-color);
+    font-weight: 500;
+    text-align: center;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+    backdrop-filter: blur(8px);
+    margin: 0 !important;
+    position: relative;
+    overflow: hidden;
+}
+
+.language-btn:hover {
+    border-color: var(--accent-color);
+    background: color-mix(in srgb, var(--accent-color) 8%, var(--input-bg-color));
+    transform: translateY(-3px);
+}
+
+.language-btn.selected {
+    background: var(--accent-color) !important;
+    color: #fff !important;
+    border-color: var(--accent-color);
+    box-shadow: 0 4px 10px -3px rgba(10, 132, 255, 0.25);
+}
+
+@media (max-width: 480px) {
+    .language-grid {
+        grid-template-columns: 1fr;
+        gap: 0.75rem;
+    }
+    .language-btn {
+        padding: 1rem;
+        min-height: 60px;
+    }
+}
+
+/* Кнопки Навигации */
+
+/* Steam верификация */
+.verification-result {
+    display: none;
+    text-align: center;
+    padding: 1.5rem;
+    border-radius: var(--button-border-radius);
+    margin-bottom: 1rem;
+    border: 1px solid var(--border-color);
+    background: var(--input-bg-color);
+}
+
+.verification-result.verification-success {
+    border-color: var(--success-color);
+    background: color-mix(in srgb, #000000 10%, var(--input-bg-color));
+}
+
+.verification-result.verification-failed {
+    border-color: var(--danger-color);
+    background: color-mix(in srgb, var(--danger-color) 10%, var(--input-bg-color));
+}
+
+.verification-result .verified-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin: 0 auto 0.75rem;
+    border: 3px solid var(--success-color);
+    display: block;
+}
+
+.verification-result p {
+    color: var(--text-color);
+    margin: 0;
+}
+
+.verification-result .verification-success p,
+.verification-success #verificationText {
+    color: var(--success-color);
+    font-weight: 600;
+}
+
+.verification-failed #verificationText {
+    color: var(--danger-color);
+    font-weight: 600;
+}
+
+/* Кнопка проверки Steam */
+.install-container .btn-warning {
+    background: #404753 !important;
+    color: #fff !important;
+    border: none;
+}
+
+.install-container .btn-warning:hover {
+    background: #e08600 !important;
+}
+
+.install-container .btn {
+    padding: 0.9rem 2rem;
+    border-radius: var(--button-border-radius);
+    font-weight: 700;
+    cursor: pointer;
+    border: none;
+    transition: var(--transition-smooth);
+}
+
+.install-container .btn-primary {
+    background: var(--accent-color);
+    color: #fff;
+}
+
+.install-container .btn-secondary {
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+}
+
+.install-container .btn:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.2);
+}
+
+@media (max-width: 500px) {
+    .install-container { padding: 2rem 1.5rem; }
+    .install-title { font-size: 1.6rem; }
+}

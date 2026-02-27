@@ -1,0 +1,562 @@
+/*
+  CS2 WeaponPaints - iOS Premium Skins Engine
+  - Minimalist White/Black contrast, Subtle blurs, Native Apple feel
+*/
+
+:root {
+    --glow-strength: 0.15;
+    /* Rarity Palette - iOS Soft Tones */
+    --rarity-common: #8E8E93;
+    --rarity-uncommon: #007AFF;
+    --rarity-rare: #5E5CE6;
+    --rarity-mythical: #AF52DE;
+    --rarity-legendary: #FF2D55;
+    --rarity-ancient: #FF3B30;
+    --rarity-gold: #FFD60A;
+}
+
+/* ===== LAYOUT WRAPPER ===== */
+.content-wrapper {
+    max-width: 1300px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+/* ===== FIXED SKINS GRID ===== */
+.skins-grid-full {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 20px;
+    padding: 20px 0;
+}
+
+@media (max-width: 768px) {
+    .skins-grid-full {
+        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+        gap: 12px;
+        padding: 10px 0;
+    }
+}
+
+.skins-grid-full>div {
+    max-width: 100% !important;
+    width: 100% !important;
+    padding: 0 !important;
+}
+
+/* ===== WEAPON CARD: iOS Redesign ===== */
+.weapon-card {
+    background: var(--bg-surface);
+    border: 0.5px solid var(--border-main);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    position: relative;
+    backdrop-filter: blur(var(--glass-blur)) saturate(1.8);
+    -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(1.8);
+    transition: var(--transition-bounce);
+    cursor: pointer;
+    box-shadow: var(--shadow-premium);
+}
+
+/* Inner border effect for depth */
+.weapon-card::before {
+    content: '';
+    position: absolute;
+    inset: 0.5px;
+    border: 0.5px solid rgba(255, 255, 255, 0.1);
+    border-radius: calc(var(--radius-lg) - 0.5px);
+    pointer-events: none;
+    z-index: 1;
+}
+
+.weapon-card:hover {
+    transform: scale(1.02) translateY(-4px);
+    background: var(--bg-surface-hover);
+    border-color: var(--rarity-color);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), 0 0 20px var(--rarity-color);
+}
+
+/* iOS Rarity Accent (Subtle Dot/Indicator) */
+.weapon-card::after {
+    content: '';
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--rarity-color);
+    box-shadow: 0 0 8px var(--rarity-color);
+    z-index: 10;
+}
+
+/* Card Rarity Variables */
+.rarity-common {
+    --rarity-color: var(--rarity-common);
+}
+
+.rarity-uncommon {
+    --rarity-color: var(--rarity-uncommon);
+}
+
+.rarity-rare {
+    --rarity-color: var(--rarity-rare);
+}
+
+.rarity-mythical {
+    --rarity-color: var(--rarity-mythical);
+}
+
+.rarity-legendary {
+    --rarity-color: var(--rarity-legendary);
+}
+
+.rarity-ancient {
+    --rarity-color: var(--rarity-ancient);
+}
+
+.rarity-gold {
+    --rarity-color: var(--rarity-gold);
+}
+
+/* Image Container */
+.weapon-card-image {
+    position: relative;
+    padding: 20px;
+    height: 180px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.weapon-img {
+    max-width: 90%;
+    max-height: 90%;
+    object-fit: contain;
+    filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.25));
+    transition: var(--transition-bounce);
+}
+
+.weapon-card:hover .weapon-img {
+    transform: scale(1.08) translateY(-5px);
+}
+
+/* Card Content */
+.weapon-card-info {
+    padding: 16px 20px;
+    border-top: 0.5px solid var(--border-main);
+}
+
+@media (max-width: 768px) {
+    .weapon-card-image {
+        height: 140px;
+        padding: 12px;
+    }
+
+    .weapon-card-info {
+        padding: 12px;
+    }
+
+    .weapon-skin-title {
+        font-size: 0.9rem;
+    }
+
+    .weapon-paint-title {
+        font-size: 0.7rem;
+    }
+}
+
+.weapon-skin-title {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0;
+    letter-spacing: -0.4px;
+}
+
+.weapon-paint-title {
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    margin-top: 2px;
+}
+
+/* iOS Sidebar Styling */
+.weapons-menu-container {
+    background: var(--bg-surface);
+    backdrop-filter: blur(var(--glass-blur)) saturate(1.8);
+    border: 0.5px solid var(--border-main);
+    border-radius: var(--radius-lg);
+    padding: 12px;
+    width: 200px;
+    position: sticky;
+    top: 100px;
+    box-shadow: var(--shadow-premium);
+}
+
+.weapons-menu-title {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin: 12px 0 6px 12px;
+}
+
+.sideBtn {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    padding: 10px 14px;
+    background: transparent;
+    border: none;
+    border-radius: 12px;
+    color: var(--text-primary);
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: var(--transition-spring);
+    position: relative;
+    overflow: hidden;
+}
+
+.sideBtn:hover {
+    background: rgba(120, 120, 128, 0.1);
+    transform: translateX(4px);
+}
+
+.sideBtn.active-side {
+    background: var(--text-primary);
+    color: var(--bg-deep) !important;
+    box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2);
+}
+
+.sideBtnImg,
+.sideBtnI {
+    width: 20px;
+    height: 20px;
+    transition: var(--transition-smooth);
+    filter: brightness(0) invert(var(--icon-invert));
+    color: var(--text-primary);
+}
+
+.sideBtn.active-side .sideBtnImg,
+.sideBtn.active-side .sideBtnI {
+    filter: brightness(0);
+    /* Pure black for maximum contrast on white background */
+    transform: scale(1.1);
+}
+
+.menu-divider {
+    height: 0.5px;
+    background: var(--border-main);
+    margin: 8px 12px;
+}
+
+/* iOS Segmented Control (Team Selection) */
+.team-selection-group {
+    display: flex;
+    background: rgba(120, 120, 128, 0.12);
+    border-radius: 12px;
+    padding: 2px;
+    gap: 2px;
+    margin-bottom: 12px;
+    border: 0.5px solid var(--border-main);
+}
+
+.team-btn-equip {
+    flex: 1;
+    height: 36px;
+    border-radius: 10px !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition-smooth);
+    border: none !important;
+    background: transparent !important;
+    cursor: pointer;
+}
+
+.btn-check:checked+.team-btn-equip {
+    background: var(--bg-surface-hover) !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2), inset 0 0 0 0.5px var(--border-hover) !important;
+    color: var(--text-primary) !important;
+}
+
+/* Specific adjustment for selection colors */
+.btn-check:checked+.team-btn-equip.btn-t {
+    background: #FF9500 !important;
+    /* iOS Orange */
+    box-shadow: 0 4px 12px rgba(255, 149, 0, 0.4) !important;
+    color: white !important;
+}
+
+.btn-check:checked+.team-btn-equip.btn-ct {
+    background: var(--accent-primary) !important;
+    box-shadow: 0 4px 12px var(--accent-glow) !important;
+    color: white !important;
+}
+
+.team-logo {
+    width: 20px;
+    height: 20px;
+    opacity: 0.6;
+    transition: var(--transition-smooth);
+    filter: grayscale(1) brightness(2);
+    /* Preserve logo detail in dark mode */
+}
+
+.btn-check:checked+.team-btn-equip .team-logo {
+    opacity: 1;
+    filter: brightness(2) contrast(1.5) grayscale(1);
+    /* Detailed white-silver look on colored backgrounds */
+    transform: scale(1.1);
+}
+
+/* Mobile Bottom Nav (iOS Style) */
+.mobile-bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: var(--bg-surface);
+    backdrop-filter: blur(var(--glass-blur)) saturate(1.8);
+    border-top: 0.5px solid var(--border-main);
+    display: flex;
+    justify-content: space-around;
+    padding: 8px 0 calc(env(safe-area-inset-bottom) + 8px);
+    z-index: 2000;
+}
+
+.mobile-nav-item {
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    font-size: 0.65rem;
+    font-weight: 500;
+}
+
+.mobile-nav-item.active-side,
+.mobile-nav-item:active {
+    color: var(--accent-primary);
+}
+
+.mobile-nav-item img,
+.mobile-nav-item i {
+    width: 22px;
+    height: 22px;
+    filter: brightness(0) invert(var(--icon-invert));
+}
+
+.mobile-nav-item.active-side img,
+.mobile-nav-item.active-side i {
+    filter: none;
+    /* Let the primary color show */
+}
+
+/* Floating Actions: iOS style buttons */
+.revert,
+.settings {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: rgba(120, 120, 128, 0.15);
+    border: 0.5px solid var(--border-main);
+    backdrop-filter: blur(10px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+    z-index: 10;
+}
+
+.loading-spinner {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 5;
+    opacity: 0;
+    visibility: hidden;
+    transition: var(--transition-smooth);
+    border-radius: var(--radius-lg);
+}
+
+.loading-spinner.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.loading-spinner i {
+    font-size: 1.5rem;
+    color: var(--accent-primary);
+}
+
+.revert {
+    right: 52px;
+    /* Offset from settings */
+}
+
+.revert:hover,
+.settings:hover {
+    background: var(--accent-primary);
+    color: white;
+    transform: scale(1.1);
+    box-shadow: 0 0 15px var(--accent-glow);
+}
+
+/* Dual Skin: Clean Layout */
+.weapon-card.dual-skin .secondary-skin-wrapper {
+    background: rgba(120, 120, 128, 0.05);
+    border: none;
+    border-top: 0.5px solid var(--border-main);
+}
+
+.secondary-skin-info .weapon-skin-title {
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+/* Theme variable for icons */
+.dark-theme {
+    --theme-invert: 0;
+}
+
+.light-theme {
+    --theme-invert: 1;
+}
+
+/* Back Button Sidebar */
+.btn-back-sidebar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    padding: 10px 14px;
+    background: rgba(120, 120, 128, 0.08);
+    border: 0.5px solid var(--border-main);
+    border-radius: 12px;
+    color: var(--text-secondary);
+    font-weight: 600;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: var(--transition-bounce);
+}
+
+.btn-back-sidebar:hover {
+    background: var(--bg-surface-hover);
+    color: var(--text-primary);
+    transform: translateX(-4px);
+    border-color: var(--text-primary);
+}
+
+/* Modal Neutralization & Light Mode Fixes */
+.modal-content {
+    background: var(--bg-surface) !important;
+    border: 0.5px solid var(--border-main) !important;
+}
+
+.btn-close-custom {
+    background: rgba(120, 120, 128, 0.1);
+    border: none;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition-base);
+}
+
+.btn-close-custom:hover {
+    background: rgba(120, 120, 128, 0.2);
+    transform: rotate(90deg);
+}
+
+/* Float Inputs & Slider Neutralization */
+#floatSlider {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 6px;
+    background: rgba(120, 120, 128, 0.2);
+    border-radius: 10px;
+    outline: none;
+}
+
+#floatSlider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 20px;
+    height: 20px;
+    background: var(--text-primary);
+    border: 2px solid var(--bg-deep);
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.modal-body .form-control {
+    background: rgba(120, 120, 128, 0.08) !important;
+    border: 0.5px solid var(--border-main) !important;
+    color: var(--text-primary) !important;
+    font-weight: 600;
+}
+
+/* Pattern Buttons Neutralization */
+.modal-body .btn-outline-light {
+    border-color: var(--border-main) !important;
+    color: var(--text-secondary) !important;
+    background: rgba(120, 120, 128, 0.05) !important;
+}
+
+.modal-body .btn-outline-light:hover {
+    background: var(--text-primary) !important;
+    color: var(--bg-deep) !important;
+    border-color: var(--text-primary) !important;
+}
+
+#modalButton {
+    background: var(--text-primary) !important;
+    color: var(--bg-deep) !important;
+    border: none !important;
+    font-weight: 800 !important;
+    border-radius: 16px !important;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2) !important;
+}
+
+#modalButton:hover {
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3) !important;
+}
+
+#floatText {
+    background: rgba(120, 120, 128, 0.15) !important;
+    color: var(--text-primary) !important;
+    padding: 6px 12px !important;
+}
+
+/* Contrast reset for images in light mode if needed */
+.contrast-reset {
+    filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.15));
+}
+
+.light-theme {
+    --theme-invert: 1;
+}
