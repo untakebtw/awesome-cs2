@@ -1,3 +1,9 @@
+ШАБЛОН БОЛЬШЕ НЕ ПОДДЕРЖИВАЕТСЯ
+TEMPLATE IS NO LONGER SUPPORTED
+You can correct errors yourself or through AI and improve the template.
+I recommend using this best CMS for cs2: https://flute-cms.com/
+
+
 # Awesome
 
 > Веб-интерфейс для плагина [WeaponPaints](https://github.com/Nereziel/cs2-WeaponPaints) — смена скинов, ножей, перчаток, агентов и музыки прямо через браузер.
